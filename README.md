@@ -33,3 +33,11 @@ Once you are done, you can create now a new screen by clicking File -> New -> Sc
 ![New Screen](screens/new_screen.png)
 
 Feel free to open an issue if you notice any bug or have any feature request!
+
+To Run
+
+./gradlew tasks
+
+./gradlew runIde
+
+./gradlew buildPlugin
