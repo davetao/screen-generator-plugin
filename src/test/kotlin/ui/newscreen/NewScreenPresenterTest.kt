@@ -62,10 +62,11 @@ class NewScreenPresenterTest {
         whenever(writeActionDispatcherMock.dispatch(any())).thenAnswer { (it.arguments[0] as () -> Unit).invoke() }
         val screenName = "Test"
         val packageName = "com.test"
+        val featureName = "feature"
 
-        presenter.onOkClick(packageName, screenName, AndroidComponent.ACTIVITY, moduleName)
+        presenter.onOkClick(packageName, screenName, featureName, AndroidComponent.ACTIVITY, moduleName)
 
-        verify(fileCreatorMock).createScreenFiles(packageName, screenName, AndroidComponent.ACTIVITY, moduleName)
+        verify(fileCreatorMock).createScreenFiles(packageName, screenName, featureName, AndroidComponent.ACTIVITY, moduleName)
         verify(viewMock).close()
     }
 }

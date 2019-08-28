@@ -10,25 +10,29 @@ private const val LAYOUT_DIRECTORY = "layout"
 
 interface FileCreator {
 
-    fun createScreenFiles(packageName: String, screenName: String, androidComponent: AndroidComponent, module: String)
+    fun createScreenFiles(packageName: String, screenName: String, featureName: String, androidComponent: AndroidComponent, module: String)
 }
 
 class FileCreatorImpl(private val settingsRepository: SettingsRepository,
                       private val sourceRootRepository: SourceRootRepository) : FileCreator {
 
-    override fun createScreenFiles(packageName: String, screenName: String, androidComponent: AndroidComponent, module: String) {
+    override fun createScreenFiles(packageName: String, screenName: String, featureName:String, androidComponent: AndroidComponent, module: String) {
         val codeSubdirectory = findCodeSubdirectory(packageName, module)
         val resourcesSubdirectory = findResourcesSubdirectory(module)
-        if (codeSubdirectory != null) {
+
+        val featureSubDirectory = findCodeSubdirectory(featureName, module)
+
+        if (featureSubDirectory != null) {
+            
             settingsRepository.loadSettings().apply {
                 val baseClass = getAndroidComponentBaseClass(androidComponent)
                 screenElements.forEach {
                     if (it.fileType == FileType.LAYOUT_XML) {
-                        val file = File(it.fileName(screenName, packageName, androidComponent.displayName, baseClass), it.body(screenName, packageName, androidComponent.displayName, baseClass), it.fileType)
+                        val file = File(it.fileName(screenName, packageName, featureName, androidComponent.displayName, baseClass), it.body(screenName, packageName, featureName, androidComponent.displayName, baseClass), it.fileType)
                         resourcesSubdirectory.addFile(file)
                     } else {
-                        val file = File(it.fileName(screenName, packageName, androidComponent.displayName, baseClass), it.body(screenName, packageName, androidComponent.displayName, baseClass), it.fileType)
-                        codeSubdirectory.addFile(file)
+                        val file = File(it.fileName(screenName, packageName, featureName, androidComponent.displayName, baseClass), it.body(screenName, packageName, featureName, androidComponent.displayName, baseClass), it.fileType)
+                        featureSubDirectory.addFile(file)
                     }
                 }
             }

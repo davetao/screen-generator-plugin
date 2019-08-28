@@ -30,6 +30,7 @@ class NewScreenDialog(project: Project, currentPath: CurrentPath?) : DialogWrapp
             presenter.onOkClick(
                     panel.packageTextField.text,
                     panel.nameTextField.text,
+                    panel.featureTextField.text,
                     AndroidComponent.values()[panel.androidComponentComboBox.selectedIndex],
                     panel.moduleComboBox.selectedItem as String)
 

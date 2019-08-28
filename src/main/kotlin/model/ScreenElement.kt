@@ -12,23 +12,24 @@ data class ScreenElement(var name: String = "",
 
     override fun toString() = name
 
-    fun body(screenName: String, packageName: String, androidComponent: String, androidComponentBaseClass: String) =
-            template.replaceVariables(screenName, packageName, androidComponent, androidComponentBaseClass)
+    fun body(screenName: String, packageName: String, featureName:String, androidComponent: String, androidComponentBaseClass: String) =
+            template.replaceVariables(screenName, packageName, featureName, androidComponent, androidComponentBaseClass)
 
-    fun fileName(screenName: String, packageName: String, androidComponent: String, androidComponentBaseClass: String) =
-            fileNameTemplate.replaceVariables(screenName, packageName, androidComponent, androidComponentBaseClass).run {
+    fun fileName(screenName: String, packageName: String, featureName:String, androidComponent: String, androidComponentBaseClass: String) =
+            fileNameTemplate.replaceVariables(screenName, packageName, featureName, androidComponent, androidComponentBaseClass).run {
                 if (fileType == FileType.LAYOUT_XML)
                     toLowerCase()
                 else
                     this
             }
 
-    private fun String.replaceVariables(screenName: String, packageName: String, androidComponent: String, androidComponentBaseClass: String) =
+    private fun String.replaceVariables(screenName: String, packageName: String, featureName: String, androidComponent: String, androidComponentBaseClass: String) =
             replace(Variable.NAME.value, screenName)
                     .replace(Variable.NAME_SNAKE_CASE.value, screenName.toSnakeCase())
                     .replace(Variable.NAME_LOWER_CASE.value, screenName.decapitalize())
                     .replace(Variable.SCREEN_ELEMENT.value, name)
                     .replace(Variable.PACKAGE_NAME.value, packageName)
+                    .replace(Variable.FEATURE_NAME.value, featureName)
                     .replace(Variable.ANDROID_COMPONENT_NAME.value, androidComponent)
                     .replace(Variable.ANDROID_COMPONENT_NAME_LOWER_CASE.value, androidComponent.decapitalize())
                     .replace(Variable.ANDROID_COMPONENT_FULL_CLASS_NAME.value, androidComponentBaseClass)

@@ -100,7 +100,7 @@ class SettingsPresenterTest {
             verify(viewMock).showFileNameTemplate(testElementKotlin.fileNameTemplate)
             verify(viewMock).showFileNameSample("SampleTest")
             verify(viewMock).showTemplate(testTemplate)
-            verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, ""))
+            verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, ""))
             verify(viewMock).addTextChangeListeners()
             verify(viewMock).setScreenElementDetailsEnabled(true)
         }
@@ -125,7 +125,7 @@ class SettingsPresenterTest {
             verify(viewMock).showFileNameTemplate(testElementXml.fileNameTemplate)
             verify(viewMock).showFileNameSample("activity_sample")
             verify(viewMock).showTemplate(FileType.LAYOUT_XML.defaultTemplate)
-            verify(viewMock).showSampleCode(testElementXml.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, ""))
+            verify(viewMock).showSampleCode(testElementXml.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, ""))
             verify(viewMock).addTextChangeListeners()
             verify(viewMock).setScreenElementDetailsEnabled(true)
         }
@@ -169,8 +169,8 @@ class SettingsPresenterTest {
 
         assertEquals("Test Test", testElementKotlin.name)
         verify(viewMock).updateScreenElement(0, testElementKotlin)
-        verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
-        verify(viewMock).showFileNameSample(testElementKotlin.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
+        verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
+        verify(viewMock).showFileNameSample(testElementKotlin.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME,  SAMPLE_ANDROID_COMPONENT, activityBaseClass))
         assertTrue(presenter.isModified)
     }
 
@@ -253,7 +253,7 @@ class SettingsPresenterTest {
 
         presenter.onTemplateChange(testTemplate)
 
-        verify(viewMock).showSampleCode(unnamedElement.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
+        verify(viewMock).showSampleCode(unnamedElement.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
         assertTrue(presenter.isModified)
         assertEquals(testTemplate, presenter.currentSelectedScreenElement?.template)
     }
@@ -266,8 +266,8 @@ class SettingsPresenterTest {
 
         assertTrue(presenter.isModified)
         assertEquals(activityBaseClass, presenter.currentActivityBaseClass)
-        verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
-        verify(viewMock).showFileNameSample(testElementKotlin.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
+        verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
+        verify(viewMock).showFileNameSample(testElementKotlin.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
     }
 
     @Test
@@ -279,8 +279,8 @@ class SettingsPresenterTest {
 
         assertTrue(presenter.isModified)
         assertEquals(fragmentBaseClass, presenter.currentFragmentBaseClass)
-        verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
-        verify(viewMock).showFileNameSample(testElementKotlin.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
+        verify(viewMock).showSampleCode(testElementKotlin.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
+        verify(viewMock).showFileNameSample(testElementKotlin.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, activityBaseClass))
     }
 
     @Test

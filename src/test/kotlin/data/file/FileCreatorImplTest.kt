@@ -56,7 +56,7 @@ class FileCreatorImplTest {
         whenever(resourcesDirectoryMock.createSubdirectory("layout")).thenReturn(resourcesDirectoryMock)
         whenever(settingsRepositoryMock.loadSettings()).thenReturn(Settings(screenElements, "com.AppCompatActivity", "com.Fragment"))
 
-        fileCreator.createScreenFiles("com.test", "Test", AndroidComponent.ACTIVITY, moduleName)
+        fileCreator.createScreenFiles("com.test", "Test", "Feature", AndroidComponent.ACTIVITY, moduleName)
 
         verify(codeDirectoryMock).addFile(File("TestPresenter", "package com.test\n\nimport com.AppCompatActivity\n\nclass TestActivity : AppCompatActivity", FileType.KOTLIN))
         verify(resourcesDirectoryMock).addFile(File("activity_test", "<FrameLayout></FrameLayout>", FileType.LAYOUT_XML))
@@ -75,7 +75,7 @@ class FileCreatorImplTest {
         whenever(resourcesDirectoryMock.createSubdirectory("layout")).thenReturn(resourcesDirectoryMock)
         whenever(settingsRepositoryMock.loadSettings()).thenReturn(Settings(screenElements, "com.AppCompatActivity", "com.Fragment"))
 
-        fileCreator.createScreenFiles("com.test", "Test", AndroidComponent.FRAGMENT, moduleName)
+        fileCreator.createScreenFiles("com.test", "Test", "Feature", AndroidComponent.FRAGMENT, moduleName)
 
         verify(codeDirectoryMock).addFile(File("TestPresenter", "package com.test\n\nimport com.Fragment\n\nclass TestFragment : Fragment", FileType.KOTLIN))
         verify(resourcesDirectoryMock).addFile(File("fragment_test", "<FrameLayout></FrameLayout>", FileType.LAYOUT_XML))

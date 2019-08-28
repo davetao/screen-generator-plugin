@@ -9,6 +9,7 @@ import util.swap
 
 const val SAMPLE_SCREEN_NAME = "Sample"
 const val SAMPLE_PACKAGE_NAME = "com.sample"
+const val SAMPLE_FEATURE_NAME = "com.sample.feature"
 const val SAMPLE_ANDROID_COMPONENT = "Activity"
 
 class SettingsPresenter(private val view: SettingsView,
@@ -89,7 +90,7 @@ class SettingsPresenter(private val view: SettingsView,
     }
 
     private fun updateSampleFileName(screenElement: ScreenElement) =
-            view.showFileNameSample(screenElement.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, currentActivityBaseClass))
+            view.showFileNameSample(screenElement.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, currentActivityBaseClass))
 
     fun onApplySettings() {
         initialSettings = Settings(screenElements.toMutableList(), currentActivityBaseClass, currentFragmentBaseClass)
@@ -130,7 +131,7 @@ class SettingsPresenter(private val view: SettingsView,
     }
 
     private fun updateSampleCode(screenElement: ScreenElement) =
-            view.showSampleCode(screenElement.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_ANDROID_COMPONENT, currentActivityBaseClass))
+            view.showSampleCode(screenElement.body(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, SAMPLE_ANDROID_COMPONENT, currentActivityBaseClass))
 
     fun onActivityBaseClassChange(text: String) {
         currentActivityBaseClass = text
@@ -167,7 +168,7 @@ class SettingsPresenter(private val view: SettingsView,
             FileType.LAYOUT_XML -> view.swapToXmlTemplateListener(addListener)
         }
         view.showFileNameTemplate(screenElement.fileNameTemplate)
-        view.showFileNameSample(screenElement.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, AndroidComponent.ACTIVITY.displayName, currentActivityBaseClass))
+        view.showFileNameSample(screenElement.fileName(SAMPLE_SCREEN_NAME, SAMPLE_PACKAGE_NAME, SAMPLE_FEATURE_NAME, AndroidComponent.ACTIVITY.displayName, currentActivityBaseClass))
     }
 
     fun onFileNameChange(fileName: String) {
